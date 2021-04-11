@@ -5,12 +5,12 @@ import buttons.CancelButton;
 import buttons.DigitButton;
 import buttons.MotionButton;
 import buttons.PanelButton;
+import buttons.PanelTextField;
 import buttons.StayButton;
 import buttons.ZoneCheckBox;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -20,7 +20,7 @@ public class GUI extends Application {
 	private PanelButton button1, button2, button3, button4, button5, button6, button7, button8, button9, button0,
 			buttonStay, buttonAway, buttonCancel, buttonMotionDetector;
 	private ZoneCheckBox checkBoxZone1, checkBoxZone2, checkBoxZone3;
-	private TextField textField = new TextField("Ready");
+	private PanelTextField textField;
 	private Label readyStatus = new Label("Ready Status");
 
 	// private Label labelX = new Label("x");
@@ -29,7 +29,7 @@ public class GUI extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		GridPane pane = new GridPane();
-		textField.setEditable(false);
+		textField = new PanelTextField("Ready");
 		button1 = new DigitButton("1");
 		button2 = new DigitButton("2");
 		button3 = new DigitButton("3");

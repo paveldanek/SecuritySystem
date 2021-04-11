@@ -1,7 +1,6 @@
 package states;
 
 import events.CheckAllZones;
-import events.DigitPressed;
 import events.EnterPassword;
 import events.PressAway;
 import events.PressCancel;
@@ -27,13 +26,6 @@ public abstract class SecurityState {
 	 * Processes all the zones being checked
 	 */
 	public void handleEvent(CheckAllZones event) {
-
-	}
-
-	/**
-	 * Processes a single digit input from the dial
-	 */
-	public void handleEvent(DigitPressed event) {
 
 	}
 
@@ -79,6 +71,8 @@ public abstract class SecurityState {
 
 	}
 
+	// IT MAY BE NOT NECESSARY TO HAVE TIMERTICKED HANDLER HERE, MAYBE MOVE TO
+	// CONTEXT
 	/**
 	 * Processes a timer tick, generates a Timer Ticked event
 	 */

@@ -7,13 +7,14 @@ import events.PressAway;
 import events.PressCancel;
 import events.PressMotion;
 import events.PressStay;
+import events.TimerTicked;
 import events.UncheckZone;
 import events.ZoneToggled;
 import zones.Zone;
 
 public class SecurityContext {
 	private static SecurityContext instance;
-	private Zone[] zones = new Zone[5];
+	private Zone[] zones = new Zone[5]; // works for up to 5 zones
 	private int zoneCounter = 0;
 	private static final String PASSWORD = "1234";
 	private String password = "";
@@ -66,16 +67,20 @@ public class SecurityContext {
 
 	public void handleEvent(CheckAllZones event) {
 		System.out.println("All Zones Checked.");
+
 	}
 
 	public void handleEvent(UncheckZone event) {
 		System.out.println("Sone Zones Unchecked.");
+
 	}
 
 	public void handleEvent(PressAway event) {
+
 	}
 
 	public void handleEvent(PressCancel event) {
+		// this is not the intended future functionality: just for testing purposes
 		password = "";
 		System.out.println("Password canceled.");
 	}
@@ -86,4 +91,7 @@ public class SecurityContext {
 	public void handleEvent(PressStay event) {
 	}
 
+	public void handleEvent(TimerTicked event) {
+
+	}
 }
