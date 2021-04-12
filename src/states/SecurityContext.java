@@ -1,16 +1,39 @@
 package states;
 
+import display.SecurityDisplay;
 import events.CheckAllZones;
 import events.DigitPressed;
 import events.EnterPassword;
+import events.IncorrectPassword;
 import events.PressAway;
 import events.PressCancel;
 import events.PressMotion;
 import events.PressStay;
+import events.TimerRanOut;
 import events.TimerTicked;
 import events.UncheckZone;
 import events.ZoneToggled;
 import zones.Zone;
+
+/**
+ * 
+ * @author Brahma Dathan and Sarnath Ramnath
+ * @Copyright (c) 2010
+ * 
+ *            Redistribution and use with or without modification, are permitted
+ *            provided that the following conditions are met:
+ *
+ *            - the use is for academic purpose only - Redistributions of source
+ *            code must retain the above copyright notice, this list of
+ *            conditions and the following disclaimer. - Neither the name of
+ *            Brahma Dathan or Sarnath Ramnath may be used to endorse or promote
+ *            products derived from this software without specific prior written
+ *            permission.
+ *
+ *            The authors do not make any claims regarding the correctness of
+ *            the code in this module and are not responsible for any loss or
+ *            damage resulting from its use.
+ */
 
 public class SecurityContext {
 	private static SecurityContext instance;
@@ -18,9 +41,12 @@ public class SecurityContext {
 	private int zoneCounter = 0;
 	private static final String PASSWORD = "1234";
 	private String password = "";
+	private SecurityState currentState;
+	private SecurityDisplay display;
 
 	private SecurityContext() {
 		instance = this;
+		currentState = Ready.instance();
 	}
 
 	public static SecurityContext instance() {
@@ -30,15 +56,25 @@ public class SecurityContext {
 		return instance;
 	}
 
+	public void setDisplay(SecurityDisplay display) {
+		this.display = display;
+	}
+
 	public int addZone() {
 		zones[zoneCounter] = new Zone();
 		zoneCounter++;
 		return zoneCounter;
 	}
 
+	public void changeState(SecurityState nextState) {
+		currentState.leave();
+		currentState = nextState;
+		currentState.enter();
+	}
+
 	public void handleEvent(DigitPressed event) {
+		currentState.handleEvent(event);
 		password = password + DigitPressed.instance().getDigit();
-		System.out.println("Password entered: " + password);
 		if (password.equalsIgnoreCase(PASSWORD)) {
 			handleEvent(EnterPassword.instance());
 			password = "";
@@ -62,36 +98,83 @@ public class SecurityContext {
 	}
 
 	public void handleEvent(EnterPassword event) {
-		System.out.println("Password Correct.");
+		currentState.handleEvent(event);
+	}
+
+	public void handleEvent(IncorrectPassword event) {
+		currentState.handleEvent(event);
 	}
 
 	public void handleEvent(CheckAllZones event) {
-		System.out.println("All Zones Checked.");
-
+		currentState.handleEvent(event);
 	}
 
 	public void handleEvent(UncheckZone event) {
-		System.out.println("Sone Zones Unchecked.");
-
+		currentState.handleEvent(event);
 	}
 
 	public void handleEvent(PressAway event) {
-
+		currentState.handleEvent(event);
 	}
 
 	public void handleEvent(PressCancel event) {
-		// this is not the intended future functionality: just for testing purposes
-		password = "";
-		System.out.println("Password canceled.");
+		currentState.handleEvent(event);
 	}
 
 	public void handleEvent(PressMotion event) {
+		currentState.handleEvent(event);
 	}
 
 	public void handleEvent(PressStay event) {
+		currentState.handleEvent(event);
 	}
 
 	public void handleEvent(TimerTicked event) {
-
+		currentState.handleEvent(event);
 	}
+
+	public void handleEvent(TimerRanOut event) {
+		currentState.handleEvent(event);
+	}
+
+	public void showReady() {
+		display.showReady();
+	}
+
+	public void showNotReady() {
+		display.showNotReady();
+	}
+
+	public void showSecondsToAway(int seconds) {
+		display.showSecondsToAway(seconds);
+	}
+
+	public void showSecondsToStay(int seconds) {
+		display.showSecondsToStay(seconds);
+	}
+
+	public void showSecondsToBreach(int seconds) {
+		display.showSecondsToBreach(seconds);
+	}
+
+	public void showAway() {
+		display.showAway();
+	}
+
+	public void showStay() {
+		display.showStay();
+	}
+
+	public void showBreach() {
+		display.showBreach();
+	}
+
+	public void showCancel() {
+		display.showCancel();
+	}
+
+	public void showPassword(String password) {
+		display.showPassword(password);
+	}
+
 }
