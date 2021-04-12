@@ -1,6 +1,6 @@
 package states;
 
-public class NotReady extends SecurityState {
+public class CountdownToAway extends SecurityState {
 
 	@Override
 	public void enter() {
