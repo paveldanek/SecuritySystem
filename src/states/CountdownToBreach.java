@@ -1,6 +1,6 @@
 package states;
 
-public class Breach extends SecurityState {
+public class CountdownToBreach extends SecurityState {
 
 	@Override
 	public void enter() {
@@ -13,4 +13,5 @@ public class Breach extends SecurityState {
 		// TODO Auto-generated method stub
 
 	}
+
 }
