@@ -1,7 +1,8 @@
-package states;
+package states.away;
 
 import events.PressMotion;
 import events.UncheckZone;
+import states.SecurityState;
 
 public class ArmedAway extends SecurityState {
 	private static ArmedAway instance;

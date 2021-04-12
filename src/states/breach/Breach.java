@@ -1,6 +1,8 @@
-package states;
+package states.breach;
 
-public class ArmedStay extends SecurityState {
+import states.SecurityState;
+
+public class Breach extends SecurityState {
 
 	@Override
 	public void enter() {

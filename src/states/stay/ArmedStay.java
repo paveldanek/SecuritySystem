@@ -1,6 +1,8 @@
-package states;
+package states.stay;
 
-public class CountdownToStay extends SecurityState {
+import states.SecurityState;
+
+public class ArmedStay extends SecurityState {
 
 	@Override
 	public void enter() {
@@ -13,5 +15,4 @@ public class CountdownToStay extends SecurityState {
 		// TODO Auto-generated method stub
 
 	}
-
 }
