@@ -14,21 +14,23 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import states.SecurityContext;
 
-public class GUI extends Application {
+public class GUI extends Application implements SecurityDisplay {
 
 	private PanelButton button1, button2, button3, button4, button5, button6, button7, button8, button9, button0,
 			buttonStay, buttonAway, buttonCancel, buttonMotionDetector;
 	private ZoneCheckBox checkBoxZone1, checkBoxZone2, checkBoxZone3;
 	private PanelTextField textField;
 	private Label readyStatus = new Label("Ready Status");
+	private GridPane pane;
+	private SecurityContext securityContext;
 
 	// private Label labelX = new Label("x");
 	// private Label labelY = new Label("y");
 	// private Stage window;
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		GridPane pane = new GridPane();
+
+	private void initializeButtons() {
 		textField = new PanelTextField("Ready");
 		button1 = new DigitButton("1");
 		button2 = new DigitButton("2");
@@ -47,8 +49,9 @@ public class GUI extends Application {
 		checkBoxZone1 = new ZoneCheckBox("Zone 1");
 		checkBoxZone2 = new ZoneCheckBox("Zone 2");
 		checkBoxZone3 = new ZoneCheckBox("Zone 3");
+	}
 
-		// textField.setText("Not Ready");
+	private void populatePane() {
 		pane.add(button1, 0, 0);
 		pane.add(button2, 1, 0);
 		pane.add(button3, 2, 0);
@@ -68,6 +71,9 @@ public class GUI extends Application {
 		pane.add(buttonCancel, 13, 5);
 		pane.add(readyStatus, 4, 6);
 		pane.add(buttonMotionDetector, 3, 7, 5, 1);
+	}
+
+	private void structurePane() {
 		pane.getColumnConstraints().add(new ColumnConstraints());
 		pane.getColumnConstraints().add(new ColumnConstraints());
 		pane.getColumnConstraints().add(new ColumnConstraints());
@@ -80,6 +86,16 @@ public class GUI extends Application {
 		pane.getColumnConstraints().add(new ColumnConstraints());
 		pane.getColumnConstraints().add(new ColumnConstraints());
 		pane.getColumnConstraints().add(new ColumnConstraints(80));
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		securityContext = SecurityContext.instance();
+		securityContext.setDisplay(this);
+		pane = new GridPane();
+		initializeButtons();
+		populatePane();
+		structurePane();
 		Scene scene = new Scene(pane);
 		primaryStage.setTitle("Security System");
 		primaryStage.setScene(scene);
@@ -89,6 +105,47 @@ public class GUI extends Application {
 		// the static variable 'window' now) in the handle method
 	}
 
+	public void showReady() {
+		textField.display("Ready");
+	}
+
+	public void showNotReady() {
+		textField.display("Not Ready");
+	}
+
+	public void showSecondsToAway(int seconds) {
+		textField.display(String.format("%2s", seconds) + " seconds to Away");
+	}
+
+	public void showSecondsToStay(int seconds) {
+		textField.display(String.format("%2s", seconds) + " seconds to Stay");
+	}
+
+	public void showSecondsToBreach(int seconds) {
+		textField.display(String.format("%2s", seconds) + " seconds");
+	}
+
+	public void showAway() {
+		textField.display("Away");
+	}
+
+	public void showStay() {
+		textField.display("Stay");
+	}
+
+	public void showBreach() {
+		textField.display("Security Breached");
+	}
+
+	public void showCancel() {
+		textField.display("Enter Password to Cancel");
+	}
+
+	public void showPassword(String password) {
+		textField.display(password);
+	}
+
+	// MAIN METHOD TO BE REMOVED FROM GUI AND PLACED TO A SEPARATE CLASS
 	public static void main(String[] args) {
 		Application.launch(args);
 		System.out.println("THANK YOU!  :-)");

@@ -1,7 +1,9 @@
 package states;
 
 import events.CheckAllZones;
+import events.DigitPressed;
 import events.EnterPassword;
+import events.IncorrectPassword;
 import events.PressAway;
 import events.PressCancel;
 import events.PressMotion;
@@ -9,6 +11,26 @@ import events.PressStay;
 import events.TimerRanOut;
 import events.TimerTicked;
 import events.UncheckZone;
+
+/**
+ * 
+ * @author Brahma Dathan and Sarnath Ramnath
+ * @Copyright (c) 2010
+ * 
+ *            Redistribution and use with or without modification, are permitted
+ *            provided that the following conditions are met:
+ *
+ *            - the use is for academic purpose only - Redistributions of source
+ *            code must retain the above copyright notice, this list of
+ *            conditions and the following disclaimer. - Neither the name of
+ *            Brahma Dathan or Sarnath Ramnath may be used to endorse or promote
+ *            products derived from this software without specific prior written
+ *            permission.
+ *
+ *            The authors do not make any claims regarding the correctness of
+ *            the code in this module and are not responsible for any loss or
+ *            damage resulting from its use.
+ */
 
 public abstract class SecurityState {
 
@@ -30,9 +52,23 @@ public abstract class SecurityState {
 	}
 
 	/**
+	 * Processes the digit being entered
+	 */
+	public void handleEvent(DigitPressed event) {
+
+	}
+
+	/**
 	 * Processes the password being entered
 	 */
 	public void handleEvent(EnterPassword event) {
+
+	}
+
+	/**
+	 * Processes the password being incorrect
+	 */
+	public void handleEvent(IncorrectPassword event) {
 
 	}
 
@@ -71,8 +107,6 @@ public abstract class SecurityState {
 
 	}
 
-	// IT MAY BE NOT NECESSARY TO HAVE TIMERTICKED HANDLER HERE, MAYBE MOVE TO
-	// CONTEXT
 	/**
 	 * Processes a timer tick, generates a Timer Ticked event
 	 */
