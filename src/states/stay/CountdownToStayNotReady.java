@@ -1,5 +1,7 @@
 package states.stay;
 
-public class CountdownToStayNotReady {
+import states.Countdown;
+
+public class CountdownToStayNotReady extends Countdown {
 
 }
