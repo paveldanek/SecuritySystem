@@ -11,7 +11,6 @@ public class Countdown extends SecurityState {
 	@Override
 	public void leave() {
 		// TODO Auto-generated method stub
-
 	}
 
 }
