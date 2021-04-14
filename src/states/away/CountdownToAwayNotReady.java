@@ -2,10 +2,10 @@ package states.away;
 
 import events.CheckAllZones;
 import events.TimerRanOut;
+import events.TimerTicked;
 import states.Countdown;
 import states.NotReady;
 import states.SecurityContext;
-import timer.Timer;
 
 public class CountdownToAwayNotReady extends Countdown {
 
@@ -30,11 +30,20 @@ public class CountdownToAwayNotReady extends Countdown {
 	}
 
 	/**
+	 * Processes a timer tick, generates a Timer Ticked event
+	 */
+	@Override
+	public void handleEvent(TimerTicked event) {
+
+		SecurityContext.instance().showSecondsToNotReady(timer.getTimeValue());
+	}
+
+	/**
 	 * Processes a timer tick, generates a Timer Ran Out event
 	 */
 	@Override
 	public void handleEvent(TimerRanOut event) {
-		SecurityContext.instance().showSecondsToAway(0);
+		SecurityContext.instance().showSecondsToNotReady(0);
 		SecurityContext.instance().changeState(NotReady.instance());
 	}
 
@@ -49,13 +58,13 @@ public class CountdownToAwayNotReady extends Countdown {
 
 	@Override
 	public void enter() {
-		timer = new Timer(this, 10);
-		SecurityContext.instance().showSecondsToAway(timer.getTimeValue());
 
+		SecurityContext.instance().showSecondsToNotReady(timer.getTimeValue());
 	}
 
 	@Override
 	public void leave() {
+
 		super.leave();
 		SecurityContext.instance().showNotReady();
 	}
