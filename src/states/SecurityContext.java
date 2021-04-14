@@ -157,6 +157,14 @@ public class SecurityContext {
 		display.showSecondsToBreach(seconds);
 	}
 
+	public void showSecondsToReady(int seconds) {
+		display.showSecondsToReady(seconds);
+	}
+
+	public void showSecondsToNotReady(int seconds) {
+		display.showSecondsToNotReady(seconds);
+	}
+
 	public void showAway() {
 		display.showAway();
 	}

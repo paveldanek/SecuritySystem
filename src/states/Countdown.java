@@ -1,16 +1,23 @@
 package states;
 
-public class Countdown extends SecurityState {
+import timer.Notifiable;
+import timer.Timer;
+
+public class Countdown extends SecurityState implements Notifiable {
+	protected Timer timer;
+
+	public void startTimer() {
+		timer = new Timer(this, 10);
+	}
 
 	@Override
 	public void enter() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
+		timer.stop();
+		timer = null;
 	}
 
 }
