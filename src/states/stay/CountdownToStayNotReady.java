@@ -26,7 +26,7 @@ public class CountdownToStayNotReady extends CountdownToStay {
 	}
 
 	public void handleEvent(TimerUp event) {
-		SecurityContext.instance().showSecondsToStay(CountdownToStay.instance().getTimeValue());
+		// SecurityContext.instance().showSecondsToStay(CountdownToStay.instance().getTimeValue());
 		CountdownToStay.instance().stopTimer();
 		SecurityContext.instance().changeState(NotReady.instance());
 	}
