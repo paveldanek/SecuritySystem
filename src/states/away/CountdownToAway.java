@@ -42,6 +42,7 @@ public class CountdownToAway extends Countdown {
 	@Override
 	public void handleEvent(TimerRanOut event) {
 		SecurityContext.instance().showSecondsToAway(0);
+		SecurityContext.instance().showAway();
 		SecurityContext.instance().changeState(ArmedAway.instance());
 	}
 
@@ -51,6 +52,7 @@ public class CountdownToAway extends Countdown {
 	@Override
 	public void handleEvent(UncheckZone event) {
 
+		CountdownToAwayNotReady.instance().setTimer(timer);
 		SecurityContext.instance().changeState(CountdownToAwayNotReady.instance());
 	}
 
@@ -64,6 +66,5 @@ public class CountdownToAway extends Countdown {
 	public void leave() {
 
 		super.leave();
-		SecurityContext.instance().showAway();
 	}
 }

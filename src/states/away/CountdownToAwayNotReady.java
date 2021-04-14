@@ -44,6 +44,7 @@ public class CountdownToAwayNotReady extends Countdown {
 	@Override
 	public void handleEvent(TimerRanOut event) {
 		SecurityContext.instance().showSecondsToNotReady(0);
+		SecurityContext.instance().showNotReady();
 		SecurityContext.instance().changeState(NotReady.instance());
 	}
 
@@ -53,12 +54,12 @@ public class CountdownToAwayNotReady extends Countdown {
 	@Override
 	public void handleEvent(CheckAllZones event) {
 
+		CountdownToAway.instance().setTimer(timer);
 		SecurityContext.instance().changeState(CountdownToAway.instance());
 	}
 
 	@Override
 	public void enter() {
-
 		SecurityContext.instance().showSecondsToNotReady(timer.getTimeValue());
 	}
 
@@ -66,7 +67,6 @@ public class CountdownToAwayNotReady extends Countdown {
 	public void leave() {
 
 		super.leave();
-		SecurityContext.instance().showNotReady();
 	}
 
 }

@@ -31,7 +31,6 @@ public class NotReady extends SecurityState implements Notifiable {
 
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
-
+		SecurityContext.instance().showReady();
 	}
 }
