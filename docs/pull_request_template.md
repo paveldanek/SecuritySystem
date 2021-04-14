@@ -2,4 +2,4 @@
 
 ### Why do we need it?
 
-### Are these changes tested? If not, why?
+### Were these changes tested in the GUI? If not, why?
