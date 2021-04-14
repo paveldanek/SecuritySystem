@@ -53,6 +53,7 @@ public class CountdownToAwayNotReady extends Countdown {
 	@Override
 	public void handleEvent(CheckAllZones event) {
 
+		CountdownToAway.instance().setTimer(timer);
 		SecurityContext.instance().changeState(CountdownToAway.instance());
 	}
 
