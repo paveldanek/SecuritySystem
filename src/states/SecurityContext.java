@@ -11,6 +11,7 @@ import events.PressMotion;
 import events.PressStay;
 import events.TimerRanOut;
 import events.TimerTicked;
+import events.TimerUp;
 import events.UncheckZone;
 import events.ZoneToggled;
 import zones.Zone;
@@ -134,6 +135,10 @@ public class SecurityContext {
 	}
 
 	public void handleEvent(TimerRanOut event) {
+		currentState.handleEvent(event);
+	}
+
+	public void handleEvent(TimerUp event) {
 		currentState.handleEvent(event);
 	}
 
