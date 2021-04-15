@@ -53,6 +53,13 @@ public abstract class SecurityState {
 	}
 
 	/**
+	 * Processes one zone being unchecked
+	 */
+	public void handleEvent(UncheckZone event) {
+
+	}
+
+	/**
 	 * Processes the digit being entered
 	 */
 	public void handleEvent(DigitPressed event) {
@@ -122,10 +129,4 @@ public abstract class SecurityState {
 
 	}
 
-	/**
-	 * Processes one zone being unchecked
-	 */
-	public void handleEvent(UncheckZone event) {
-
-	}
 }
