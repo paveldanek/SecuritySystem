@@ -122,7 +122,15 @@ public class GUI extends Application implements SecurityDisplay {
 	}
 
 	public void showSecondsToBreach(int seconds) {
-		textField.display(String.format("%2s", seconds) + " seconds");
+		textField.display(String.format("%2s", seconds) + " seconds to Breach");
+	}
+
+	public void showSecondsToReady(int seconds) {
+		textField.display(String.format("%2s", seconds) + " seconds to Ready");
+	}
+
+	public void showSecondsToNotReady(int seconds) {
+		textField.display(String.format("%2s", seconds) + " seconds to Not Ready");
 	}
 
 	public void showAway() {
@@ -150,4 +158,5 @@ public class GUI extends Application implements SecurityDisplay {
 		Application.launch(args);
 		System.out.println("THANK YOU!  :-)");
 	}
+
 }
