@@ -2,6 +2,7 @@ package states.away;
 
 import events.PressMotion;
 import events.UncheckZone;
+import states.SecurityContext;
 import states.SecurityState;
 
 public class ArmedAway extends SecurityState {
@@ -36,7 +37,7 @@ public class ArmedAway extends SecurityState {
 	 */
 	@Override
 	public void enter() {
-		// TODO Auto-generated method stub
+		SecurityContext.instance().showAway();
 
 	}
 

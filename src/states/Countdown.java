@@ -1,16 +1,50 @@
 package states;
 
-public class Countdown extends SecurityState {
+import timer.Notifiable;
+import timer.Timer;
+
+public class Countdown extends SecurityState implements Notifiable {
+	private static Countdown instance;
+	protected Timer timer;
+
+	/**
+	 * Private for the singleton pattern
+	 */
+	protected Countdown() {
+	}
+
+	/**
+	 * For singleton
+	 * 
+	 * @return the object
+	 */
+	public static Countdown instance() {
+		if (instance == null) {
+			instance = new Countdown();
+		}
+		return instance;
+	}
+
+	public void startTimer() {
+		timer = new Timer(this, 10);
+	}
+
+	public void setTimer(Timer timer) {
+		this.timer = new Timer(this, timer.getTimeValue());
+	}
+
+	public int getTimeValue() {
+		return timer.getTimeValue();
+	}
 
 	@Override
 	public void enter() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
+		timer.stop();
+		timer = null;
 	}
 
 }

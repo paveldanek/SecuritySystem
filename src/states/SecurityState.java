@@ -10,6 +10,7 @@ import events.PressMotion;
 import events.PressStay;
 import events.TimerRanOut;
 import events.TimerTicked;
+import events.TimerUp;
 import events.UncheckZone;
 
 /**
@@ -48,6 +49,13 @@ public abstract class SecurityState {
 	 * Processes all the zones being checked
 	 */
 	public void handleEvent(CheckAllZones event) {
+
+	}
+
+	/**
+	 * Processes one zone being unchecked
+	 */
+	public void handleEvent(UncheckZone event) {
 
 	}
 
@@ -108,16 +116,17 @@ public abstract class SecurityState {
 	}
 
 	/**
+	 * Processes a timer tick, generates a Timer Up event
+	 */
+	public void handleEvent(TimerUp event) {
+
+	}
+
+	/**
 	 * Processes a timer tick, generates a Timer Ticked event
 	 */
 	public void handleEvent(TimerTicked event) {
 
 	}
 
-	/**
-	 * Processes one zone being unchecked
-	 */
-	public void handleEvent(UncheckZone event) {
-
-	}
 }
