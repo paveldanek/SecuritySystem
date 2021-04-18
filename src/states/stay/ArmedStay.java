@@ -1,7 +1,10 @@
 package states.stay;
 
+import events.PressCancel;
+import events.UncheckZone;
 import states.SecurityContext;
 import states.SecurityState;
+import states.breach.Breach;
 
 public class ArmedStay extends SecurityState {
 	private static ArmedStay instance;
@@ -17,6 +20,22 @@ public class ArmedStay extends SecurityState {
 			instance = new ArmedStay();
 		}
 		return instance;
+	}
+
+	/**
+	 * Processes one zone being unchecked
+	 */
+	@Override
+	public void handleEvent(UncheckZone event) {
+		SecurityContext.instance().changeState(Breach.instance());
+	}
+
+	/**
+	 * Processes cancel button pressed event
+	 */
+	@Override
+	public void handleEvent(PressCancel event) {
+		SecurityContext.instance().changeState(CancelStay.instance());
 	}
 
 	@Override
