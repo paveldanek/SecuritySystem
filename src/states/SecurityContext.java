@@ -76,9 +76,15 @@ public class SecurityContext {
 	public void handleEvent(DigitPressed event) {
 		currentState.handleEvent(event);
 		password = password + DigitPressed.instance().getDigit();
-		if (password.equalsIgnoreCase(PASSWORD)) {
-			handleEvent(EnterPassword.instance());
-			password = "";
+		// compares entered password when size is the same
+		if (password.length() == PASSWORD.length()) {
+			if (password.equalsIgnoreCase(PASSWORD)) {
+				handleEvent(EnterPassword.instance());
+				clearPassword();
+			} else {
+				handleEvent(IncorrectPassword.instance());
+				clearPassword();
+			}
 		}
 	}
 
@@ -186,8 +192,12 @@ public class SecurityContext {
 		display.showCancel();
 	}
 
-	public void showPassword(String password) {
+	public void showPassword() {
 		display.showPassword(password);
+	}
+
+	public void clearPassword() {
+		password = "";
 	}
 
 }
