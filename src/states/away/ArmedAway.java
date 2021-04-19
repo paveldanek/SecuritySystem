@@ -19,7 +19,7 @@ public class ArmedAway extends SecurityState {
 
 	/**
 	 * Processes the motion button being pressed. In AramedAwayState, this will
-	 * trigger a countdown of 60 seconds to a breach state.
+	 * trigger a countdown to a breach state.
 	 */
 	@Override
 	public void handleEvent(PressMotion event) {
@@ -28,7 +28,7 @@ public class ArmedAway extends SecurityState {
 
 	/**
 	 * Processes one zone being unchecked. In AramedAwayState, this will
-	 * trigger a countdown of 60 seconds to a breach state.
+	 * trigger a countdown to a breach state.
 	 */
 	@Override
 	public void handleEvent(UncheckZone event) {
