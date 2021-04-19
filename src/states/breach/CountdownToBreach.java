@@ -2,6 +2,7 @@ package states.breach;
 
 import events.EnterPassword;
 import events.TimerRanOut;
+import events.TimerTicked;
 import states.Countdown;
 import states.Ready;
 import states.SecurityContext;
@@ -31,7 +32,7 @@ public class CountdownToBreach extends Countdown {
 	}
 
 	public void startTimer() {
-		timer = new Timer(this, 60);
+		timer = new Timer(this, 10);
 	}
 
 	public void setTimer(Timer timer) {
@@ -40,6 +41,10 @@ public class CountdownToBreach extends Countdown {
 
 	public int getTimeValue() {
 		return timer.getTimeValue();
+	}
+	
+	public void handleEvent(TimerTicked event) {
+		SecurityContext.instance().showSecondsToBreach(timer.getTimeValue());
 	}
 	
 	/**
@@ -55,7 +60,6 @@ public class CountdownToBreach extends Countdown {
 	 */
 	public void handleEvent(TimerRanOut event) {
 		SecurityContext.instance().changeState(Breach.instance());
-		this.leave();
 	}
 
 	@Override
