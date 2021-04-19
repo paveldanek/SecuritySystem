@@ -10,7 +10,6 @@ import events.PressMotion;
 import events.PressStay;
 import events.TimerRanOut;
 import events.TimerTicked;
-import events.TimerUp;
 import events.UncheckZone;
 
 /**
@@ -112,13 +111,6 @@ public abstract class SecurityState {
 	 * Processes a timer tick, generates a Timer Ran Out event
 	 */
 	public void handleEvent(TimerRanOut event) {
-
-	}
-
-	/**
-	 * Processes a timer tick, generates a Timer Up event
-	 */
-	public void handleEvent(TimerUp event) {
 
 	}
 

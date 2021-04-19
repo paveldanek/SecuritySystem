@@ -4,7 +4,7 @@ import events.PressAway;
 import events.PressStay;
 import events.UncheckZone;
 import states.away.CountdownToAway;
-import states.stay.CountdownToStayReady;
+import states.stay.CountdownToStay;
 import timer.Notifiable;
 
 public class Ready extends SecurityState implements Notifiable {
@@ -37,7 +37,8 @@ public class Ready extends SecurityState implements Notifiable {
 	}
 
 	public void handleEvent(PressStay event) {
-		SecurityContext.instance().changeState(CountdownToStayReady.instance());
+		CountdownToStay.instance().startTimer();
+		SecurityContext.instance().changeState(CountdownToStay.instance());
 	}
 
 	@Override

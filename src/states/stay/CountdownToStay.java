@@ -2,23 +2,24 @@ package states.stay;
 
 import events.TimerRanOut;
 import events.TimerTicked;
-import events.TimerUp;
+import events.UncheckZone;
+import states.Countdown;
 import states.SecurityContext;
-import states.SecurityState;
-import timer.Notifiable;
-import timer.Timer;
 
-public class CountdownToStay extends SecurityState implements Notifiable {
-
+public class CountdownToStay extends Countdown {
 	private static CountdownToStay instance;
-	private Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
 	 */
-	protected CountdownToStay() {
+	private CountdownToStay() {
 	}
 
+	/**
+	 * For singleton
+	 * 
+	 * @return the object
+	 */
 	public static CountdownToStay instance() {
 		if (instance == null) {
 			instance = new CountdownToStay();
@@ -26,35 +27,43 @@ public class CountdownToStay extends SecurityState implements Notifiable {
 		return instance;
 	}
 
+	/**
+	 * Processes a timer tick, generates a Timer Ticked event
+	 */
+	@Override
+	public void handleEvent(TimerTicked event) {
+
+		SecurityContext.instance().showSecondsToStay(timer.getTimeValue());
+	}
+
+	/**
+	 * Processes a timer tick, generates a Timer Ran Out event
+	 */
+	@Override
+	public void handleEvent(TimerRanOut event) {
+		SecurityContext.instance().showSecondsToStay(0);
+		SecurityContext.instance().changeState(ArmedStay.instance());
+	}
+
+	/**
+	 * Processes one zone being unchecked
+	 */
+	@Override
+	public void handleEvent(UncheckZone event) {
+
+		CountdownToStayNotReady.instance().setTimer(timer);
+		SecurityContext.instance().changeState(CountdownToStayNotReady.instance());
+	}
+
 	@Override
 	public void enter() {
+
+		SecurityContext.instance().showSecondsToStay(timer.getTimeValue());
 	}
 
 	@Override
 	public void leave() {
-	}
 
-	public void startTimer(int seconds) {
-		if (timer == null) {
-			timer = new Timer(this, seconds);
-		}
+		super.leave();
 	}
-
-	public void stopTimer() {
-		timer = null;
-	}
-
-	public int getTimeValue() {
-		return timer.getTimeValue();
-	}
-
-	public void handleEvent(TimerTicked event) {
-		SecurityContext.instance().showSecondsToStay(timer.getTimeValue());
-	}
-
-	public void handleEvent(TimerRanOut event) {
-		SecurityContext.instance().showSecondsToStay(timer.getTimeValue());
-		SecurityContext.instance().handleEvent(TimerUp.instance());
-	}
-
 }
