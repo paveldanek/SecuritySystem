@@ -1,11 +1,13 @@
 package states.stay;
 
 import events.CheckAllZones;
-import events.TimerUp;
+import events.TimerRanOut;
+import events.TimerTicked;
+import states.Countdown;
 import states.NotReady;
 import states.SecurityContext;
 
-public class CountdownToStayNotReady extends CountdownToStay {
+public class CountdownToStayNotReady extends Countdown {
 	private static CountdownToStayNotReady instance;
 
 	/**
@@ -21,22 +23,44 @@ public class CountdownToStayNotReady extends CountdownToStay {
 		return instance;
 	}
 
-	public void handleEvent(CheckAllZones event) {
-		SecurityContext.instance().changeState(CountdownToStayReady.instance());
+	/**
+	 * Processes a timer tick, generates a Timer Ticked event
+	 */
+	@Override
+	public void handleEvent(TimerTicked event) {
+
+		SecurityContext.instance().showSecondsToStay(timer.getTimeValue());
 	}
 
-	public void handleEvent(TimerUp event) {
-		// SecurityContext.instance().showSecondsToStay(CountdownToStay.instance().getTimeValue());
-		CountdownToStay.instance().stopTimer();
+	/**
+	 * Processes a timer tick, generates a Timer Ran Out event
+	 */
+	@Override
+	public void handleEvent(TimerRanOut event) {
+		SecurityContext.instance().showSecondsToStay(0);
 		SecurityContext.instance().changeState(NotReady.instance());
+	}
+
+	/**
+	 * Processes all the zones being checked
+	 */
+	@Override
+	public void handleEvent(CheckAllZones event) {
+
+		CountdownToStay.instance().setTimer(timer);
+		SecurityContext.instance().changeState(CountdownToStay.instance());
 	}
 
 	@Override
 	public void enter() {
+
+		SecurityContext.instance().showSecondsToStay(timer.getTimeValue());
 	}
 
 	@Override
 	public void leave() {
+
+		super.leave();
 	}
 
 }
