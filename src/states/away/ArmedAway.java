@@ -1,5 +1,6 @@
 package states.away;
 
+import events.PressCancel;
 import events.PressMotion;
 import events.UncheckZone;
 import states.SecurityContext;
@@ -29,6 +30,14 @@ public class ArmedAway extends SecurityState {
 	@Override
 	public void handleEvent(UncheckZone event) {
 
+	}
+
+	/**
+	 * Processes cancel button pressed event
+	 */
+	@Override
+	public void handleEvent(PressCancel event) {
+		SecurityContext.instance().changeState(CancelAway.instance());
 	}
 
 	/**
