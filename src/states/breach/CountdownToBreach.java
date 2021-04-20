@@ -6,17 +6,15 @@ import events.TimerTicked;
 import states.Countdown;
 import states.Ready;
 import states.SecurityContext;
-import timer.Timer;
 
 public class CountdownToBreach extends Countdown {
 	private static CountdownToBreach instance;
-	protected Timer timer;
 
 	/**
 	* Private for the singleton pattern
 	*/
 	protected CountdownToBreach() {
-		this.enter();
+		
 	}
 
 	/**
@@ -30,18 +28,6 @@ public class CountdownToBreach extends Countdown {
 		}
 		return instance;
 	}
-
-	public void startTimer() {
-		timer = new Timer(this, 10);
-	}
-
-	public void setTimer(Timer timer) {
-		this.timer = new Timer(this, timer.getTimeValue());
-	}
-
-	public int getTimeValue() {
-		return timer.getTimeValue();
-	}
 	
 	public void handleEvent(TimerTicked event) {
 		SecurityContext.instance().showSecondsToBreach(timer.getTimeValue());
@@ -52,7 +38,6 @@ public class CountdownToBreach extends Countdown {
 	 */
 	public void handleEvent(EnterPassword event) {
 		SecurityContext.instance().changeState(Ready.instance());
-		this.leave();
 	}
 	
 	/**
@@ -64,12 +49,11 @@ public class CountdownToBreach extends Countdown {
 
 	@Override
 	public void enter() {
-		this.startTimer();
+		super.startTimer();
 	}
 
 	@Override
 	public void leave() {
-		timer.stop();
-		timer = null;
+		super.leave();
 	}
 }
