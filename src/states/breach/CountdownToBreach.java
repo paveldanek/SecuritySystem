@@ -14,7 +14,7 @@ public class CountdownToBreach extends Countdown {
 	* Private for the singleton pattern
 	*/
 	protected CountdownToBreach() {
-		this.enter();
+		
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class CountdownToBreach extends Countdown {
 
 	@Override
 	public void enter() {
-		this.startTimer();
+		super.startTimer();
 	}
 
 	@Override
