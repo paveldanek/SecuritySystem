@@ -14,8 +14,6 @@ public interface SecurityDisplay {
 
 	public void showSecondsToReady(int seconds);
 
-	public void showSecondsToNotReady(int seconds);
-
 	public void showAway();
 
 	public void showStay();

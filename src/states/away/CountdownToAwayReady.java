@@ -1,4 +1,4 @@
-package states.stay;
+package states.away;
 
 import events.TimerRanOut;
 import events.TimerTicked;
@@ -6,13 +6,13 @@ import events.UncheckZone;
 import states.Countdown;
 import states.SecurityContext;
 
-public class CountdownToStay extends Countdown {
-	private static CountdownToStay instance;
+public class CountdownToAwayReady extends Countdown {
+	private static CountdownToAwayReady instance;
 
 	/**
-	 * Private constructor for the singleton pattern
+	 * Private for the singleton pattern
 	 */
-	private CountdownToStay() {
+	private CountdownToAwayReady() {
 	}
 
 	/**
@@ -20,9 +20,9 @@ public class CountdownToStay extends Countdown {
 	 * 
 	 * @return the object
 	 */
-	public static CountdownToStay instance() {
+	public static CountdownToAwayReady instance() {
 		if (instance == null) {
-			instance = new CountdownToStay();
+			instance = new CountdownToAwayReady();
 		}
 		return instance;
 	}
@@ -33,7 +33,7 @@ public class CountdownToStay extends Countdown {
 	@Override
 	public void handleEvent(TimerTicked event) {
 
-		SecurityContext.instance().showSecondsToStay(timer.getTimeValue());
+		SecurityContext.instance().showSecondsToAway(timer.getTimeValue());
 	}
 
 	/**
@@ -41,8 +41,8 @@ public class CountdownToStay extends Countdown {
 	 */
 	@Override
 	public void handleEvent(TimerRanOut event) {
-		SecurityContext.instance().showSecondsToStay(0);
-		SecurityContext.instance().changeState(ArmedStay.instance());
+		SecurityContext.instance().showSecondsToAway(0);
+		SecurityContext.instance().changeState(ArmedAway.instance());
 	}
 
 	/**
@@ -51,14 +51,14 @@ public class CountdownToStay extends Countdown {
 	@Override
 	public void handleEvent(UncheckZone event) {
 
-		CountdownToStayNotReady.instance().setTimer(timer);
-		SecurityContext.instance().changeState(CountdownToStayNotReady.instance());
+		CountdownToAwayNotReady.instance().setTimer(timer);
+		SecurityContext.instance().changeState(CountdownToAwayNotReady.instance());
 	}
 
 	@Override
 	public void enter() {
 
-		SecurityContext.instance().showSecondsToStay(timer.getTimeValue());
+		SecurityContext.instance().showSecondsToAway(timer.getTimeValue());
 	}
 
 	@Override

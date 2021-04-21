@@ -3,16 +3,16 @@ package states.breach;
 import states.SecurityContext;
 import states.SecurityState;
 
-public class Breach extends SecurityState {
-	private static Breach instance;
+public class BreachReady extends SecurityState {
+	private static BreachReady instance;
 
-	private Breach() {
+	private BreachReady() {
 
 	}
 
-	public static Breach instance() {
+	public static BreachReady instance() {
 		if (instance == null) {
-			instance = new Breach();
+			instance = new BreachReady();
 		}
 		return instance;
 	}

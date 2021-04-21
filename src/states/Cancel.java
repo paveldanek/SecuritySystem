@@ -1,25 +1,23 @@
-package states.stay;
+package states;
 
 import events.EnterPassword;
 import events.IncorrectPassword;
 import events.UncheckZone;
-import states.Ready;
-import states.SecurityContext;
-import states.SecurityState;
-import states.breach.Breach;
+import states.breach.BreachNotReady;
+import states.breach.BreachReady;
 
-public class CancelStay extends SecurityState {
-	private static CancelStay instance;
+public class Cancel extends SecurityState {
+	private static Cancel instance;
 
 	/**
 	 * Private constructor for the singleton pattern
 	 */
-	private CancelStay() {
+	private Cancel() {
 	}
 
-	public static CancelStay instance() {
+	public static Cancel instance() {
 		if (instance == null) {
-			instance = new CancelStay();
+			instance = new Cancel();
 		}
 		return instance;
 	}
@@ -37,7 +35,7 @@ public class CancelStay extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(IncorrectPassword event) {
-		SecurityContext.instance().changeState(Breach.instance());
+		SecurityContext.instance().changeState(BreachReady.instance());
 	}
 
 	/**
@@ -45,11 +43,8 @@ public class CancelStay extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(UncheckZone event) {
-		// not using armedstay class
-		// SecurityContext.instance().changeState(Breach.instance());
+		SecurityContext.instance().changeState(BreachNotReady.instance());
 
-		// using armed away explicitly, plan to talk about this
-		ArmedStay.instance().handleEvent(event);
 	}
 
 	@Override
