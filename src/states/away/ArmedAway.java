@@ -1,6 +1,5 @@
 package states.away;
 
-import events.PressCancel;
 import events.PressMotion;
 import events.UncheckZone;
 import states.SecurityContext;
@@ -27,20 +26,12 @@ public class ArmedAway extends SecurityState {
 	}
 
 	/**
-	 * Processes one zone being unchecked. In AramedAwayState, this will
-	 * trigger a countdown to a breach state.
+	 * Processes one zone being unchecked. In AramedAwayState, this will trigger a
+	 * countdown to a breach state.
 	 */
 	@Override
 	public void handleEvent(UncheckZone event) {
 		SecurityContext.instance().changeState(CountdownToBreachReady.instance());
-	}
-
-	/**
-	 * Processes cancel button pressed event
-	 */
-	@Override
-	public void handleEvent(PressCancel event) {
-		SecurityContext.instance().changeState(CancelAway.instance());
 	}
 
 	/**
