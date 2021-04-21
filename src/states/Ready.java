@@ -3,8 +3,8 @@ package states;
 import events.PressAway;
 import events.PressStay;
 import events.UncheckZone;
-import states.away.CountdownToAway;
-import states.stay.CountdownToStay;
+import states.away.CountdownToAwayReady;
+import states.stay.CountdownToStayReady;
 import timer.Notifiable;
 
 public class Ready extends SecurityState implements Notifiable {
@@ -32,13 +32,13 @@ public class Ready extends SecurityState implements Notifiable {
 	@Override
 	public void handleEvent(PressAway event) {
 
-		CountdownToAway.instance().startTimer();
-		SecurityContext.instance().changeState(CountdownToAway.instance());
+		CountdownToAwayReady.instance().startTimer();
+		SecurityContext.instance().changeState(CountdownToAwayReady.instance());
 	}
 
 	public void handleEvent(PressStay event) {
-		CountdownToStay.instance().startTimer();
-		SecurityContext.instance().changeState(CountdownToStay.instance());
+		CountdownToStayReady.instance().startTimer();
+		SecurityContext.instance().changeState(CountdownToStayReady.instance());
 	}
 
 	@Override

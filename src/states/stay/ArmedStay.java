@@ -2,9 +2,10 @@ package states.stay;
 
 import events.PressCancel;
 import events.UncheckZone;
+import states.Cancel;
 import states.SecurityContext;
 import states.SecurityState;
-import states.breach.Breach;
+import states.breach.BreachNotReady;
 
 public class ArmedStay extends SecurityState {
 	private static ArmedStay instance;
@@ -27,7 +28,7 @@ public class ArmedStay extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(UncheckZone event) {
-		SecurityContext.instance().changeState(Breach.instance());
+		SecurityContext.instance().changeState(BreachNotReady.instance());
 	}
 
 	/**
@@ -35,7 +36,7 @@ public class ArmedStay extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(PressCancel event) {
-		SecurityContext.instance().changeState(CancelStay.instance());
+		SecurityContext.instance().changeState(Cancel.instance());
 	}
 
 	@Override

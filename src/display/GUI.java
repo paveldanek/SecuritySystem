@@ -129,10 +129,6 @@ public class GUI extends Application implements SecurityDisplay {
 		textField.display(String.format("%2s", seconds) + " seconds to Ready");
 	}
 
-	public void showSecondsToNotReady(int seconds) {
-		textField.display(String.format("%2s", seconds) + " seconds to Not Ready");
-	}
-
 	public void showAway() {
 		textField.display("Away");
 	}

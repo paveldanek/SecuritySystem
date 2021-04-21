@@ -3,20 +3,19 @@ package states.breach;
 import events.EnterPassword;
 import events.TimerRanOut;
 import events.TimerTicked;
+import events.UncheckZone;
 import states.Countdown;
 import states.Ready;
 import states.SecurityContext;
-import timer.Timer;
 
-public class CountdownToBreach extends Countdown {
-	private static CountdownToBreach instance;
-	protected Timer timer;
+public class CountdownToBreachReady extends Countdown {
+	private static CountdownToBreachReady instance;
 
 	/**
 	* Private for the singleton pattern
 	*/
-	protected CountdownToBreach() {
-		this.enter();
+	protected CountdownToBreachReady() {
+		
 	}
 
 	/**
@@ -24,27 +23,15 @@ public class CountdownToBreach extends Countdown {
 	* 
 	* @return the object
 	*/
-	public static CountdownToBreach instance() {
+	public static CountdownToBreachReady instance() {
 		if (instance == null) {
-			instance = new CountdownToBreach();
+			instance = new CountdownToBreachReady();
 		}
 		return instance;
 	}
-
-	public void startTimer() {
-		timer = new Timer(this, 10);
-	}
-
-	public void setTimer(Timer timer) {
-		this.timer = new Timer(this, timer.getTimeValue());
-	}
-
-	public int getTimeValue() {
-		return timer.getTimeValue();
-	}
 	
 	public void handleEvent(TimerTicked event) {
-		SecurityContext.instance().showSecondsToBreach(timer.getTimeValue());
+		SecurityContext.instance().showSecondsToBreach(super.getTimeValue());
 	}
 	
 	/**
@@ -52,24 +39,32 @@ public class CountdownToBreach extends Countdown {
 	 */
 	public void handleEvent(EnterPassword event) {
 		SecurityContext.instance().changeState(Ready.instance());
-		this.leave();
 	}
 	
 	/**
 	 * Processes the timer running out
 	 */
 	public void handleEvent(TimerRanOut event) {
-		SecurityContext.instance().changeState(Breach.instance());
+		SecurityContext.instance().showSecondsToStay(0);
+		SecurityContext.instance().changeState(BreachReady.instance());
 	}
 
+	/**
+	 * Processes the event of a zone being unchecked
+	 */
+	@Override
+	public void handleEvent(UncheckZone event) {
+		SecurityContext.instance().changeState(CountdownToBreachNotReady.instance());
+		
+	}
+	
 	@Override
 	public void enter() {
-		this.startTimer();
+		super.startTimer();
 	}
 
 	@Override
 	public void leave() {
-		timer.stop();
-		timer = null;
+		super.leave();
 	}
 }

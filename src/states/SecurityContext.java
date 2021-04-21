@@ -167,10 +167,6 @@ public class SecurityContext {
 		display.showSecondsToReady(seconds);
 	}
 
-	public void showSecondsToNotReady(int seconds) {
-		display.showSecondsToNotReady(seconds);
-	}
-
 	public void showAway() {
 		display.showAway();
 	}
