@@ -5,7 +5,7 @@ import events.PressMotion;
 import events.UncheckZone;
 import states.SecurityContext;
 import states.SecurityState;
-import states.breach.CountdownToBreach;
+import states.breach.CountdownToBreachReady;
 
 public class ArmedAway extends SecurityState {
 	private static ArmedAway instance;
@@ -23,7 +23,7 @@ public class ArmedAway extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(PressMotion event) {
-		SecurityContext.instance().changeState(CountdownToBreach.instance());
+		SecurityContext.instance().changeState(CountdownToBreachReady.instance());
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class ArmedAway extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(UncheckZone event) {
-		SecurityContext.instance().changeState(CountdownToBreach.instance());
+		SecurityContext.instance().changeState(CountdownToBreachReady.instance());
 	}
 
 	/**

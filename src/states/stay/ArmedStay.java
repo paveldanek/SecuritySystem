@@ -4,7 +4,7 @@ import events.PressCancel;
 import events.UncheckZone;
 import states.SecurityContext;
 import states.SecurityState;
-import states.breach.Breach;
+import states.breach.BreachReady;
 
 public class ArmedStay extends SecurityState {
 	private static ArmedStay instance;
@@ -27,7 +27,7 @@ public class ArmedStay extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(UncheckZone event) {
-		SecurityContext.instance().changeState(Breach.instance());
+		SecurityContext.instance().changeState(BreachReady.instance());
 	}
 
 	/**

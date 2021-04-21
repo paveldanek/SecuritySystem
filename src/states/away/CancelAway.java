@@ -7,7 +7,7 @@ import events.UncheckZone;
 import states.Ready;
 import states.SecurityContext;
 import states.SecurityState;
-import states.breach.Breach;
+import states.breach.BreachReady;
 
 public class CancelAway extends SecurityState {
 	private static CancelAway instance;
@@ -38,7 +38,7 @@ public class CancelAway extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(IncorrectPassword event) {
-		SecurityContext.instance().changeState(Breach.instance());
+		SecurityContext.instance().changeState(BreachReady.instance());
 	}
 
 	/**

@@ -7,13 +7,13 @@ import states.Countdown;
 import states.Ready;
 import states.SecurityContext;
 
-public class CountdownToBreach extends Countdown {
-	private static CountdownToBreach instance;
+public class CountdownToBreachReady extends Countdown {
+	private static CountdownToBreachReady instance;
 
 	/**
 	* Private for the singleton pattern
 	*/
-	protected CountdownToBreach() {
+	protected CountdownToBreachReady() {
 		
 	}
 
@@ -22,9 +22,9 @@ public class CountdownToBreach extends Countdown {
 	* 
 	* @return the object
 	*/
-	public static CountdownToBreach instance() {
+	public static CountdownToBreachReady instance() {
 		if (instance == null) {
-			instance = new CountdownToBreach();
+			instance = new CountdownToBreachReady();
 		}
 		return instance;
 	}
@@ -44,7 +44,7 @@ public class CountdownToBreach extends Countdown {
 	 * Processes the timer running out
 	 */
 	public void handleEvent(TimerRanOut event) {
-		SecurityContext.instance().changeState(Breach.instance());
+		SecurityContext.instance().changeState(BreachReady.instance());
 	}
 
 	@Override
