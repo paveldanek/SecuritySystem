@@ -4,6 +4,7 @@ import events.PressMotion;
 import events.UncheckZone;
 import states.SecurityContext;
 import states.SecurityState;
+import states.breach.CountdownToBreachNotReady;
 import states.breach.CountdownToBreachReady;
 
 public class ArmedAway extends SecurityState {
@@ -31,7 +32,7 @@ public class ArmedAway extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(UncheckZone event) {
-		SecurityContext.instance().changeState(CountdownToBreachReady.instance());
+		SecurityContext.instance().changeState(CountdownToBreachNotReady.instance());
 	}
 
 	/**

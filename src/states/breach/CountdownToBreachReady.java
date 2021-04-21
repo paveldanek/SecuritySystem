@@ -3,6 +3,7 @@ package states.breach;
 import events.EnterPassword;
 import events.TimerRanOut;
 import events.TimerTicked;
+import events.UncheckZone;
 import states.Countdown;
 import states.Ready;
 import states.SecurityContext;
@@ -30,7 +31,7 @@ public class CountdownToBreachReady extends Countdown {
 	}
 	
 	public void handleEvent(TimerTicked event) {
-		SecurityContext.instance().showSecondsToBreach(timer.getTimeValue());
+		SecurityContext.instance().showSecondsToBreach(super.getTimeValue());
 	}
 	
 	/**
@@ -44,9 +45,19 @@ public class CountdownToBreachReady extends Countdown {
 	 * Processes the timer running out
 	 */
 	public void handleEvent(TimerRanOut event) {
+		SecurityContext.instance().showSecondsToStay(0);
 		SecurityContext.instance().changeState(BreachReady.instance());
 	}
 
+	/**
+	 * Processes the event of a zone being unchecked
+	 */
+	@Override
+	public void handleEvent(UncheckZone event) {
+		SecurityContext.instance().changeState(CountdownToBreachNotReady.instance());
+		
+	}
+	
 	@Override
 	public void enter() {
 		super.startTimer();
