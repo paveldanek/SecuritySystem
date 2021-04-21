@@ -1,26 +1,23 @@
-package states.away;
+package states;
 
 import events.EnterPassword;
 import events.IncorrectPassword;
-import events.PressMotion;
 import events.UncheckZone;
-import states.Ready;
-import states.SecurityContext;
-import states.SecurityState;
+import states.breach.BreachNotReady;
 import states.breach.BreachReady;
 
-public class CancelAway extends SecurityState {
-	private static CancelAway instance;
+public class Cancel extends SecurityState {
+	private static Cancel instance;
 
 	/**
 	 * Private constructor for the singleton pattern
 	 */
-	private CancelAway() {
+	private Cancel() {
 	}
 
-	public static CancelAway instance() {
+	public static Cancel instance() {
 		if (instance == null) {
-			instance = new CancelAway();
+			instance = new Cancel();
 		}
 		return instance;
 	}
@@ -42,21 +39,12 @@ public class CancelAway extends SecurityState {
 	}
 
 	/**
-	 * Processes the motion button being pressed
-	 */
-	@Override
-	public void handleEvent(PressMotion event) {
-		// using armed away explicitly, plan to talk about this
-		ArmedAway.instance().handleEvent(event);
-	}
-
-	/**
 	 * Processes one zone being unchecked
 	 */
 	@Override
 	public void handleEvent(UncheckZone event) {
-		// using armed away explicitly, plan to talk about this
-		ArmedAway.instance().handleEvent(event);
+		SecurityContext.instance().changeState(BreachNotReady.instance());
+
 	}
 
 	@Override
