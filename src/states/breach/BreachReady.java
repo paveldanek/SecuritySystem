@@ -1,5 +1,8 @@
 package states.breach;
 
+import events.EnterPassword;
+import events.UncheckZone;
+import states.Ready;
 import states.SecurityContext;
 import states.SecurityState;
 
@@ -15,6 +18,21 @@ public class BreachReady extends SecurityState {
 			instance = new BreachReady();
 		}
 		return instance;
+	}
+
+	/**
+	 * Processes the password being entered
+	 */
+	public void handleEvent(EnterPassword event) {
+		SecurityContext.instance().changeState(Ready.instance());
+	}
+
+	/**
+	 * Processes the event of all zones being checked
+	 */
+	@Override
+	public void handleEvent(UncheckZone event) {
+		SecurityContext.instance().changeState(BreachNotReady.instance());
 	}
 
 	@Override
