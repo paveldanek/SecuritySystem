@@ -64,7 +64,6 @@ public class Cancel extends SecurityState {
 	public void handleEvent(PressCancel event) {
 		SecurityContext.instance().clearPassword();
 		SecurityContext.instance().showCancel();
-
 	}
 
 	@Override
