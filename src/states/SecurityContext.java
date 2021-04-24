@@ -73,8 +73,8 @@ public class SecurityContext {
 	}
 
 	public void handleEvent(DigitPressed event) {
-		currentState.handleEvent(event);
 		password = password + DigitPressed.instance().getDigit();
+		currentState.handleEvent(event);
 		// compares entered password when size is the same
 		if (password.length() == PASSWORD.length()) {
 			if (password.equalsIgnoreCase(PASSWORD)) {
