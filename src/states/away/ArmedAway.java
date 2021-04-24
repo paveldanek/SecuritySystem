@@ -48,6 +48,5 @@ public class ArmedAway extends SecurityState {
 	@Override
 	public void leave() {
 		SecurityContext.instance().clearPassword();
-		;
 	}
 }
