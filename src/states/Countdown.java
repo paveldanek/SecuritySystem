@@ -25,14 +25,29 @@ public class Countdown extends SecurityState implements Notifiable {
 		return instance;
 	}
 
+	/**
+	 * Creates a new timer obect and assigns it to the current class 'timer'
+	 * reference
+	 */
 	public void startTimer() {
 		timer = new Timer(this, 10);
 	}
 
+	/**
+	 * Creates a new timer obect with the same time value as the parameter 'timer'
+	 * object and assigns it to the current class 'timer' reference
+	 * 
+	 * @param timer of type Timer
+	 */
 	public void setTimer(Timer timer) {
 		this.timer = new Timer(this, timer.getTimeValue());
 	}
 
+	/**
+	 * Returns the time value of the current class 'timer' reference
+	 * 
+	 * @return the time value as an integer
+	 */
 	public int getTimeValue() {
 		return timer.getTimeValue();
 	}

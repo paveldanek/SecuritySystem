@@ -1,5 +1,6 @@
 package states;
 
+import events.DigitPressed;
 import events.EnterPassword;
 import events.IncorrectPassword;
 import events.UncheckZone;
@@ -20,6 +21,14 @@ public class Cancel extends SecurityState {
 			instance = new Cancel();
 		}
 		return instance;
+	}
+
+	/**
+	 * Processes a digit press
+	 */
+	@Override
+	public void handleEvent(DigitPressed event) {
+		SecurityContext.instance().showPassword();
 	}
 
 	/**
