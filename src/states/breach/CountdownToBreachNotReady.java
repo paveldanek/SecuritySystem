@@ -12,40 +12,41 @@ public class CountdownToBreachNotReady extends Countdown {
 	private static CountdownToBreachNotReady instance;
 
 	/**
-	* Private for the singleton pattern
-	*/
+	 * Private for the singleton pattern
+	 */
 	protected CountdownToBreachNotReady() {
-		
+
 	}
 
 	/**
-	* For singleton
-	* 
-	* @return the object
-	*/
+	 * For singleton
+	 * 
+	 * @return the object
+	 */
 	public static CountdownToBreachNotReady instance() {
 		if (instance == null) {
 			instance = new CountdownToBreachNotReady();
 		}
 		return instance;
 	}
-	
+
 	public void handleEvent(TimerTicked event) {
 		SecurityContext.instance().showSecondsToBreach(super.getTimeValue());
 	}
-	
+
 	/**
 	 * Processes the password being entered
 	 */
 	public void handleEvent(EnterPassword event) {
 		SecurityContext.instance().changeState(NotReady.instance());
 	}
-	
+
 	/**
 	 * Processes the timer running out
 	 */
 	public void handleEvent(TimerRanOut event) {
 		SecurityContext.instance().showSecondsToBreach(0);
+		SecurityContext.instance().clearPassword();
 		SecurityContext.instance().changeState(BreachNotReady.instance());
 	}
 
@@ -56,7 +57,7 @@ public class CountdownToBreachNotReady extends Countdown {
 	public void handleEvent(CheckAllZones event) {
 		SecurityContext.instance().changeState(CountdownToBreachReady.instance());
 	}
-	
+
 	@Override
 	public void enter() {
 		super.startTimer();
