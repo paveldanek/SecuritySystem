@@ -43,6 +43,7 @@ public class Cancel extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(UncheckZone event) {
+		SecurityContext.instance().clearPassword();
 		SecurityContext.instance().changeState(BreachNotReady.instance());
 
 	}

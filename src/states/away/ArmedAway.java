@@ -47,7 +47,6 @@ public class ArmedAway extends SecurityState {
 
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
-
+		SecurityContext.instance().clearPassword();
 	}
 }
