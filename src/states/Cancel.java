@@ -75,7 +75,6 @@ public class Cancel extends SecurityState {
 
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
 
 	}
 

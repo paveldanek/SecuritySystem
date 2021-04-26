@@ -16,6 +16,13 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import states.SecurityContext;
 
+/**
+ * This class sets up the Graphical User Interface including all buttons and
+ * fields. Supports displaying relevant information to user.
+ * 
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
+ */
 public class GUI extends Application implements SecurityDisplay {
 
 	private PanelButton button1, button2, button3, button4, button5, button6, button7, button8, button9, button0,
@@ -26,6 +33,9 @@ public class GUI extends Application implements SecurityDisplay {
 	private GridPane pane;
 	private SecurityContext securityContext;
 
+	/**
+	 * Helper method that creates all buttons, fields and check boxes.
+	 */
 	private void initializeButtons() {
 		textField = new PanelTextField("Ready");
 		button1 = new DigitButton("1");
@@ -47,6 +57,9 @@ public class GUI extends Application implements SecurityDisplay {
 		checkBoxZone3 = new ZoneCheckBox("Zone 3");
 	}
 
+	/**
+	 * Helper method that positions all items onto pane.
+	 */
 	private void populatePane() {
 		pane.add(button1, 0, 0);
 		pane.add(button2, 1, 0);
@@ -69,6 +82,9 @@ public class GUI extends Application implements SecurityDisplay {
 		pane.add(buttonMotionDetector, 3, 7, 5, 1);
 	}
 
+	/**
+	 * Helper method that creates certain spacing between some button on the pane.
+	 */
 	private void structurePane() {
 		pane.getColumnConstraints().add(new ColumnConstraints());
 		pane.getColumnConstraints().add(new ColumnConstraints());
@@ -98,46 +114,72 @@ public class GUI extends Application implements SecurityDisplay {
 		primaryStage.show();
 	}
 
+	/**
+	 * Displays "Ready" message on GUI.
+	 */
 	public void showReady() {
 		textField.display("Ready");
 	}
 
+	/**
+	 * Displays "Not Ready" message on GUI.
+	 */
 	public void showNotReady() {
 		textField.display("Not Ready");
 	}
 
+	/**
+	 * Displays count down to Away on GUI.
+	 */
 	public void showSecondsToAway(int seconds) {
 		textField.display(String.format("%2s", seconds) + " seconds to Away");
 	}
 
+	/**
+	 * Displays count down to Stay on GUI.
+	 */
 	public void showSecondsToStay(int seconds) {
 		textField.display(String.format("%2s", seconds) + " seconds to Stay");
 	}
 
+	/**
+	 * Displays count down to Breach on GUI.
+	 */
 	public void showSecondsToBreach(int seconds) {
 		textField.display(String.format("%2s", seconds) + " seconds to Breach");
 	}
 
-	public void showSecondsToReady(int seconds) {
-		textField.display(String.format("%2s", seconds) + " seconds to Ready");
-	}
-
+	/**
+	 * Displays "Away" message on GUI.
+	 */
 	public void showAway() {
 		textField.display("Away");
 	}
 
+	/**
+	 * Displays "Stay" message on GUI.
+	 */
 	public void showStay() {
 		textField.display("Stay");
 	}
 
+	/**
+	 * Displays "Security Breached" message on GUI.
+	 */
 	public void showBreach() {
 		textField.display("Security Breached");
 	}
 
+	/**
+	 * Prompts user to enter password in GUI.
+	 */
 	public void showCancel() {
 		textField.display("Enter Password to Cancel");
 	}
 
+	/**
+	 * Displays password entry on GUI.
+	 */
 	public void showPassword(String password) {
 		textField.display(password);
 	}

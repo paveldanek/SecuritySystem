@@ -28,7 +28,6 @@ public class CountdownToStayNotReady extends Countdown {
 	 */
 	@Override
 	public void handleEvent(TimerTicked event) {
-
 		SecurityContext.instance().showSecondsToStay(timer.getTimeValue());
 	}
 
@@ -46,7 +45,6 @@ public class CountdownToStayNotReady extends Countdown {
 	 */
 	@Override
 	public void handleEvent(CheckAllZones event) {
-
 		CountdownToStayReady.instance().setTimer(timer);
 		SecurityContext.instance().changeState(CountdownToStayReady.instance());
 	}
@@ -59,7 +57,6 @@ public class CountdownToStayNotReady extends Countdown {
 
 	@Override
 	public void leave() {
-
 		super.leave();
 	}
 
