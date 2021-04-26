@@ -6,6 +6,11 @@ import events.UncheckZone;
 import states.Countdown;
 import states.SecurityContext;
 
+/**
+ * Represents the Count down to Stay state of the Security System, while all
+ * zones are checked.
+ *
+ */
 public class CountdownToStayReady extends Countdown {
 	private static CountdownToStayReady instance;
 
