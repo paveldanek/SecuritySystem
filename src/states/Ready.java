@@ -8,7 +8,7 @@ import states.stay.CountdownToStayReady;
 import timer.Notifiable;
 
 /**
- * Represents the Ready state.
+ * Represents the Ready state of the Security System.
  *
  */
 public class Ready extends SecurityState implements Notifiable {
