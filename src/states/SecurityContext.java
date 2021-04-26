@@ -44,6 +44,9 @@ public class SecurityContext {
 	private SecurityState currentState;
 	private SecurityDisplay display;
 
+	/**
+	 * Singleton pattern.
+	 */
 	private SecurityContext() {
 		instance = this;
 		currentState = Ready.instance();
@@ -56,22 +59,43 @@ public class SecurityContext {
 		return instance;
 	}
 
+	/**
+	 * Pairs this Security Context with a GUI.
+	 * 
+	 * @param display - GUI supplied
+	 */
 	public void setDisplay(SecurityDisplay display) {
 		this.display = display;
 	}
 
+	/**
+	 * Adds a new zone into the array of zones that are monitored.
+	 * 
+	 * @return the Zone number
+	 */
 	public int addZone() {
 		zones[zoneCounter] = new Zone();
 		zoneCounter++;
 		return zoneCounter;
 	}
 
+	/**
+	 * Takes care of transitions between states.
+	 * 
+	 * @param nextState - indicates the state transitioning into.
+	 */
 	public void changeState(SecurityState nextState) {
 		currentState.leave();
 		currentState = nextState;
 		currentState.enter();
 	}
 
+	/**
+	 * Processes digit pressed event. Adds new digit to the password entry and
+	 * compares the entry to the actual password, once they are the same length.
+	 * Creates the EnterPassword (correct password) and IncorrectPassword (wrong
+	 * password) events. Clears the password entry after comparing.
+	 */
 	public void handleEvent(DigitPressed event) {
 		password = password + DigitPressed.instance().getDigit();
 		currentState.handleEvent(event);
@@ -87,6 +111,11 @@ public class SecurityContext {
 		}
 	}
 
+	/**
+	 * Processes zone toggled event. Toggles particular zone checked/unchecked. If
+	 * all zones are checked it creates CheckAllZones event, if any zone is
+	 * unchecked it creates UncheckZone event.
+	 */
 	public void handleEvent(ZoneToggled event) {
 		boolean allZonesChecked = true;
 		zones[ZoneToggled.instance().getZoneNumber() - 1].toggle();
@@ -103,90 +132,149 @@ public class SecurityContext {
 		}
 	}
 
+	/**
+	 * Processes correct password entered event.
+	 */
 	public void handleEvent(EnterPassword event) {
 		currentState.handleEvent(event);
 	}
 
+	/**
+	 * Processes incorrect password entered event.
+	 */
 	public void handleEvent(IncorrectPassword event) {
 		currentState.handleEvent(event);
 	}
 
+	/**
+	 * Processes all zones checked event.
+	 */
 	public void handleEvent(CheckAllZones event) {
 		currentState.handleEvent(event);
 	}
 
+	/**
+	 * Processes a zone unchecked event.
+	 */
 	public void handleEvent(UncheckZone event) {
 		currentState.handleEvent(event);
 	}
 
+	/**
+	 * Processes Away button pressed event.
+	 */
 	public void handleEvent(PressAway event) {
 		currentState.handleEvent(event);
 	}
 
+	/**
+	 * Processes Cancel button pressed event.
+	 */
 	public void handleEvent(PressCancel event) {
 		currentState.handleEvent(event);
 	}
 
+	/**
+	 * Processes Motion Detector button pressed (motion detected) event.
+	 */
 	public void handleEvent(PressMotion event) {
 		currentState.handleEvent(event);
 	}
 
+	/**
+	 * Processes Stay button pressed event.
+	 */
 	public void handleEvent(PressStay event) {
 		currentState.handleEvent(event);
 	}
 
+	/**
+	 * Processes Timer ticked event.
+	 */
 	public void handleEvent(TimerTicked event) {
 		currentState.handleEvent(event);
 	}
 
+	/**
+	 * Processes Timer ran out event.
+	 */
 	public void handleEvent(TimerRanOut event) {
 		currentState.handleEvent(event);
 	}
 
+	/**
+	 * Invokes the corresponding method of the display.
+	 */
 	public void showReady() {
 		display.showReady();
 	}
 
+	/**
+	 * Invokes the corresponding method of the display.
+	 */
 	public void showNotReady() {
 		display.showNotReady();
 	}
 
+	/**
+	 * Invokes the corresponding method of the display.
+	 */
 	public void showSecondsToAway(int seconds) {
 		display.showSecondsToAway(seconds);
 	}
 
+	/**
+	 * Invokes the corresponding method of the display.
+	 */
 	public void showSecondsToStay(int seconds) {
 		display.showSecondsToStay(seconds);
 	}
 
+	/**
+	 * Invokes the corresponding method of the display.
+	 */
 	public void showSecondsToBreach(int seconds) {
 		display.showSecondsToBreach(seconds);
 	}
 
-	public void showSecondsToReady(int seconds) {
-		display.showSecondsToReady(seconds);
-	}
-
+	/**
+	 * Invokes the corresponding method of the display.
+	 */
 	public void showAway() {
 		display.showAway();
 	}
 
+	/**
+	 * Invokes the corresponding method of the display.
+	 */
 	public void showStay() {
 		display.showStay();
 	}
 
+	/**
+	 * Invokes the corresponding method of the display.
+	 */
 	public void showBreach() {
 		display.showBreach();
 	}
 
+	/**
+	 * Invokes the corresponding method of the display.
+	 */
 	public void showCancel() {
 		display.showCancel();
 	}
 
+	/**
+	 * Invokes the corresponding method of the display.
+	 */
 	public void showPassword() {
 		display.showPassword(password);
 	}
 
+	/**
+	 * Clears the password entered.
+	 */
 	public void clearPassword() {
 		password = "";
 	}
