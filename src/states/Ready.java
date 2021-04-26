@@ -9,7 +9,9 @@ import timer.Notifiable;
 
 /**
  * Represents the Ready state of the Security System.
- *
+ * 
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
  */
 public class Ready extends SecurityState implements Notifiable {
 	private static Ready instance;

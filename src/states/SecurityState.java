@@ -15,9 +15,10 @@ import events.UncheckZone;
 /**
  * Superclass to every state of the Security System.
  * 
- * @author Brahma Dathan and Sarnath Ramnath
- * @Copyright (c) 2010
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
  * 
+ * @Copyright (c) 2010 Code adapted from Brahma Dathan and Sarnath Ramnath
  *            Redistribution and use with or without modification, are permitted
  *            provided that the following conditions are met:
  *

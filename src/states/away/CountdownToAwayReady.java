@@ -6,6 +6,13 @@ import events.UncheckZone;
 import states.Countdown;
 import states.SecurityContext;
 
+/**
+ * Represents the countdown to away state while zones are ready
+ * 
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
+ *
+ */
 public class CountdownToAwayReady extends Countdown {
 	private static CountdownToAwayReady instance;
 
