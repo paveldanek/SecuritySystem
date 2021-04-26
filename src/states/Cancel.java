@@ -3,6 +3,7 @@ package states;
 import events.DigitPressed;
 import events.EnterPassword;
 import events.IncorrectPassword;
+import events.PressCancel;
 import events.UncheckZone;
 import states.breach.BreachNotReady;
 import states.breach.BreachReady;
@@ -55,6 +56,15 @@ public class Cancel extends SecurityState {
 		SecurityContext.instance().clearPassword();
 		SecurityContext.instance().changeState(BreachNotReady.instance());
 
+	}
+
+	/**
+	 * Processes cancel button press
+	 */
+	@Override
+	public void handleEvent(PressCancel event) {
+		SecurityContext.instance().clearPassword();
+		SecurityContext.instance().showCancel();
 	}
 
 	@Override

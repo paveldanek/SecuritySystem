@@ -25,13 +25,11 @@ public class Ready extends SecurityState implements Notifiable {
 
 	@Override
 	public void handleEvent(UncheckZone event) {
-
 		SecurityContext.instance().changeState(NotReady.instance());
 	}
 
 	@Override
 	public void handleEvent(PressAway event) {
-
 		CountdownToAwayReady.instance().startTimer();
 		SecurityContext.instance().changeState(CountdownToAwayReady.instance());
 	}
@@ -43,7 +41,6 @@ public class Ready extends SecurityState implements Notifiable {
 
 	@Override
 	public void enter() {
-
 		SecurityContext.instance().showReady();
 	}
 

@@ -8,7 +8,7 @@ public class Countdown extends SecurityState implements Notifiable {
 	protected Timer timer;
 
 	/**
-	 * Private for the singleton pattern
+	 * Protected for the singleton pattern of subclasses
 	 */
 	protected Countdown() {
 	}
@@ -30,7 +30,7 @@ public class Countdown extends SecurityState implements Notifiable {
 	 * reference
 	 */
 	public void startTimer() {
-		timer = new Timer(this, 10);
+		timer = new Timer(this, 3);
 	}
 
 	/**
