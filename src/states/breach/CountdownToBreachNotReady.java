@@ -55,12 +55,14 @@ public class CountdownToBreachNotReady extends Countdown {
 	 */
 	@Override
 	public void handleEvent(CheckAllZones event) {
+		CountdownToBreachReady.instance().setTimer(timer);
 		SecurityContext.instance().changeState(CountdownToBreachReady.instance());
 	}
 
 	@Override
 	public void enter() {
-		super.startTimer();
+		SecurityContext.instance().showSecondsToBreach(timer.getTimeValue());
+
 	}
 
 	@Override

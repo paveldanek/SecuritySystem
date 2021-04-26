@@ -26,10 +26,6 @@ public class GUI extends Application implements SecurityDisplay {
 	private GridPane pane;
 	private SecurityContext securityContext;
 
-	// private Label labelX = new Label("x");
-	// private Label labelY = new Label("y");
-	// private Stage window;
-
 	private void initializeButtons() {
 		textField = new PanelTextField("Ready");
 		button1 = new DigitButton("1");
@@ -100,9 +96,6 @@ public class GUI extends Application implements SecurityDisplay {
 		primaryStage.setTitle("Security System");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		// window = primaryStage; // making a 'copy' of primaryStage, so that the GUI
-		// can be closed (through
-		// the static variable 'window' now) in the handle method
 	}
 
 	public void showReady() {
@@ -148,11 +141,4 @@ public class GUI extends Application implements SecurityDisplay {
 	public void showPassword(String password) {
 		textField.display(password);
 	}
-
-	// MAIN METHOD TO BE REMOVED FROM GUI AND PLACED TO A SEPARATE CLASS
-	public static void main(String[] args) {
-		Application.launch(args);
-		System.out.println("THANK YOU!  :-)");
-	}
-
 }

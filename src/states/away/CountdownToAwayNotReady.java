@@ -34,7 +34,6 @@ public class CountdownToAwayNotReady extends Countdown {
 	 */
 	@Override
 	public void handleEvent(TimerTicked event) {
-
 		SecurityContext.instance().showSecondsToAway(timer.getTimeValue());
 	}
 
@@ -52,20 +51,17 @@ public class CountdownToAwayNotReady extends Countdown {
 	 */
 	@Override
 	public void handleEvent(CheckAllZones event) {
-
 		CountdownToAwayReady.instance().setTimer(timer);
 		SecurityContext.instance().changeState(CountdownToAwayReady.instance());
 	}
 
 	@Override
 	public void enter() {
-
 		SecurityContext.instance().showSecondsToAway(timer.getTimeValue());
 	}
 
 	@Override
 	public void leave() {
-
 		super.leave();
 	}
 
