@@ -7,6 +7,10 @@ import states.SecurityContext;
 import states.SecurityState;
 import states.breach.BreachNotReady;
 
+/**
+ * Represents the Stay state of the Security System.
+ *
+ */
 public class ArmedStay extends SecurityState {
 	private static ArmedStay instance;
 

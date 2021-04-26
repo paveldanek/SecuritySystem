@@ -3,7 +3,7 @@ package states;
 import events.CheckAllZones;
 
 /**
- * Represents the Not Ready state.
+ * Represents the Not Ready state of the Security System.
  * 
  */
 public class NotReady extends SecurityState {
