@@ -2,7 +2,7 @@ package events;
 
 public class ZoneToggled extends SecurityEvent {
 	private static ZoneToggled instance;
-	private static int zoneNumber = 0;
+	private int zoneNumber = 0;
 
 	private ZoneToggled() {
 
@@ -16,7 +16,7 @@ public class ZoneToggled extends SecurityEvent {
 	}
 
 	public int getZoneNumber() {
-		return zoneNumber;
+		return this.zoneNumber;
 	}
 
 	public void setZoneNumber(int zoneNumber) {

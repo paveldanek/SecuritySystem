@@ -23,6 +23,7 @@ public class ArmedAway extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(PressMotion event) {
+		CountdownToBreachReady.instance().startTimer();
 		SecurityContext.instance().changeState(CountdownToBreachReady.instance());
 	}
 
@@ -32,6 +33,7 @@ public class ArmedAway extends SecurityState {
 	 */
 	@Override
 	public void handleEvent(UncheckZone event) {
+		CountdownToBreachNotReady.instance().startTimer();
 		SecurityContext.instance().changeState(CountdownToBreachNotReady.instance());
 	}
 

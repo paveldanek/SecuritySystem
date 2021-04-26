@@ -1,9 +1,12 @@
 package states;
 
 import events.CheckAllZones;
-import timer.Notifiable;
 
-public class NotReady extends SecurityState implements Notifiable {
+/**
+ * Represents the Not Ready state.
+ * 
+ */
+public class NotReady extends SecurityState {
 	private static NotReady instance;
 
 	/**
@@ -19,6 +22,9 @@ public class NotReady extends SecurityState implements Notifiable {
 		return instance;
 	}
 
+	/**
+	 * Processes all zones being checked event.
+	 */
 	@Override
 	public void handleEvent(CheckAllZones event) {
 		SecurityContext.instance().changeState(Ready.instance());

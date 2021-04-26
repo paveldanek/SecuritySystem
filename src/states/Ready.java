@@ -7,6 +7,10 @@ import states.away.CountdownToAwayReady;
 import states.stay.CountdownToStayReady;
 import timer.Notifiable;
 
+/**
+ * Represents the Ready state.
+ *
+ */
 public class Ready extends SecurityState implements Notifiable {
 	private static Ready instance;
 
@@ -23,19 +27,26 @@ public class Ready extends SecurityState implements Notifiable {
 		return instance;
 	}
 
+	/**
+	 * Processes one zone unchecked event.
+	 */
 	@Override
 	public void handleEvent(UncheckZone event) {
-
 		SecurityContext.instance().changeState(NotReady.instance());
 	}
 
+	/**
+	 * Processes Away pressed event.
+	 */
 	@Override
 	public void handleEvent(PressAway event) {
-
 		CountdownToAwayReady.instance().startTimer();
 		SecurityContext.instance().changeState(CountdownToAwayReady.instance());
 	}
 
+	/**
+	 * Processes Stay pressed event.
+	 */
 	public void handleEvent(PressStay event) {
 		CountdownToStayReady.instance().startTimer();
 		SecurityContext.instance().changeState(CountdownToStayReady.instance());
@@ -43,7 +54,6 @@ public class Ready extends SecurityState implements Notifiable {
 
 	@Override
 	public void enter() {
-
 		SecurityContext.instance().showReady();
 	}
 
