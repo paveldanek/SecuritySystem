@@ -21,7 +21,7 @@ public class UncheckZone extends SecurityEvent {
 	/**
 	 * Creates a new instance of the UncheckZone() object.
 	 * 
-	 * @return instance returns the instance of PressStay
+	 * @return instance returns the instance of UncheckZone
 	 */
 	public static UncheckZone instance() {
 		if (instance == null) {
