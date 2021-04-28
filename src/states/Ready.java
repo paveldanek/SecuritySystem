@@ -9,7 +9,9 @@ import timer.Notifiable;
 
 /**
  * Represents the Ready state of the Security System.
- *
+ * 
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
  */
 public class Ready extends SecurityState implements Notifiable {
 	private static Ready instance;
@@ -40,7 +42,7 @@ public class Ready extends SecurityState implements Notifiable {
 	 */
 	@Override
 	public void handleEvent(PressAway event) {
-		CountdownToAwayReady.instance().startTimer();
+		CountdownToAwayReady.instance().startTimer(10);
 		SecurityContext.instance().changeState(CountdownToAwayReady.instance());
 	}
 
@@ -48,7 +50,7 @@ public class Ready extends SecurityState implements Notifiable {
 	 * Processes Stay pressed event.
 	 */
 	public void handleEvent(PressStay event) {
-		CountdownToStayReady.instance().startTimer();
+		CountdownToStayReady.instance().startTimer(10);
 		SecurityContext.instance().changeState(CountdownToStayReady.instance());
 	}
 

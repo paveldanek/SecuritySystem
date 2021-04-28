@@ -8,6 +8,13 @@ import events.UncheckZone;
 import states.breach.BreachNotReady;
 import states.breach.BreachReady;
 
+/**
+ * Represents the cancel state
+ * 
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
+ *
+ */
 public class Cancel extends SecurityState {
 	private static Cancel instance;
 

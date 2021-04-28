@@ -16,10 +16,13 @@ import events.ZoneToggled;
 import zones.Zone;
 
 /**
+ * The context is an observer for the security system and stores the context
+ * info for states
  * 
- * @author Brahma Dathan and Sarnath Ramnath
- * @Copyright (c) 2010
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
  * 
+ * @Copyright (c) 2010 Code adapted from Brahma Dathan and Sarnath Ramnath
  *            Redistribution and use with or without modification, are permitted
  *            provided that the following conditions are met:
  *
@@ -34,7 +37,6 @@ import zones.Zone;
  *            the code in this module and are not responsible for any loss or
  *            damage resulting from its use.
  */
-
 public class SecurityContext {
 	private static SecurityContext instance;
 	private Zone[] zones = new Zone[5]; // works for up to 5 zones

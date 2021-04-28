@@ -5,6 +5,9 @@ import events.CheckAllZones;
 /**
  * Represents the Not Ready state of the Security System.
  * 
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
+ *
  */
 public class NotReady extends SecurityState {
 	private static NotReady instance;
