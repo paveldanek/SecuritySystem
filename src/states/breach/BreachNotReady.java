@@ -6,6 +6,13 @@ import states.NotReady;
 import states.SecurityContext;
 import states.SecurityState;
 
+/**
+ * Represents the Breach state while zones are not ready
+ * 
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
+ */
+
 public class BreachNotReady extends SecurityState {
 	private static BreachNotReady instance;
 

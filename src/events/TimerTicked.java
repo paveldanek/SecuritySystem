@@ -1,5 +1,12 @@
 package events;
 
+/**
+ * The class TimerTicked is invoked when the Timer ticks.
+ * 
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
+ *
+ */
 public class TimerTicked extends SecurityEvent {
 	private int timeLeft;
 

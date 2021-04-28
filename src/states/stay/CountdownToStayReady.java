@@ -9,7 +9,10 @@ import states.SecurityContext;
 /**
  * Represents the Count down to Stay state of the Security System, while all
  * zones are checked.
- *
+ * 
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
+ * 
  */
 public class CountdownToStayReady extends Countdown {
 	private static CountdownToStayReady instance;
