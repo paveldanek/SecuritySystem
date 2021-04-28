@@ -1,7 +1,7 @@
 package events;
 
 /**
-// * The class PressAway is invoked when the Cancel button is pressed.
+ * The class PressCancel is invoked when the Cancel button is pressed.
  * 
  * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
  *         Nguyen
@@ -16,7 +16,8 @@ public class PressCancel extends SecurityEvent {
 
 	/**
 	 * Creates a new instance of the PressCancel() object.
-	 * @return instance    returns the instance of PressCancel
+	 * 
+	 * @return instance returns the instance of PressCancel
 	 */
 	public static PressCancel instance() {
 		if (instance == null) {

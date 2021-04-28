@@ -8,6 +8,12 @@ import states.Countdown;
 import states.NotReady;
 import states.SecurityContext;
 
+/**
+ * Represents the countdown to Breach state while zones are not ready
+ * 
+ * @author Ben Hines, Carter Clark, Chris Lara-Batencourt, Pavel Danek, Ricky
+ *         Nguyen
+ */
 public class CountdownToBreachNotReady extends Countdown {
 	private static CountdownToBreachNotReady instance;
 
