@@ -37,8 +37,8 @@ public class Countdown extends SecurityState implements Notifiable {
 	 * Creates a new timer object and assigns it to the current class 'timer'
 	 * reference
 	 */
-	public void startTimer() {
-		timer = new Timer(this, 3);
+	public void startTimer(int time) {
+		timer = new Timer(this, time);
 	}
 
 	/**

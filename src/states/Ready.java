@@ -42,7 +42,7 @@ public class Ready extends SecurityState implements Notifiable {
 	 */
 	@Override
 	public void handleEvent(PressAway event) {
-		CountdownToAwayReady.instance().startTimer();
+		CountdownToAwayReady.instance().startTimer(10);
 		SecurityContext.instance().changeState(CountdownToAwayReady.instance());
 	}
 
@@ -50,7 +50,7 @@ public class Ready extends SecurityState implements Notifiable {
 	 * Processes Stay pressed event.
 	 */
 	public void handleEvent(PressStay event) {
-		CountdownToStayReady.instance().startTimer();
+		CountdownToStayReady.instance().startTimer(10);
 		SecurityContext.instance().changeState(CountdownToStayReady.instance());
 	}
 
